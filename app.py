@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import json
+from datetime import date, timedelta
 from dotenv import load_dotenv
 
 # Import components
@@ -120,10 +121,12 @@ if st.button("Run Quantitative Pipeline", type="primary"):
         news_file = f"news_{clean_name}.jsonl"
         
         # Download recent business news
+        news_end_date = date.today().isoformat()
+        news_start_date = (date.today() - timedelta(days=30)).isoformat()
         news.fetch_historical_news(
             keywords=[clean_name, "India", "business", "market"],
-            start_date="2026-02-01", 
-            end_date="2026-03-06",
+            start_date=news_start_date,
+            end_date=news_end_date,
             output_file=news_file,
             max_articles=15
         )

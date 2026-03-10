@@ -50,7 +50,3 @@ class TechnicalFilter:
             
         print(f"Surviving bullish/bearish stocks: {len(survivors)}")
         return survivors
-                
-                
-        print(f"Surviving bullish/bearish stocks: {len(survivors)}")
-        return survivors

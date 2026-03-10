@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+from datetime import date, timedelta
 import pandas as pd
 from dotenv import load_dotenv
 from polymarket_fetcher import PolymarketFetcher
@@ -105,10 +106,12 @@ def main():
         news_search_ticker = clean_ticker.replace(".NS", "").replace(".BO", "")
         
         # Optional: You can comment this out if you already downloaded the news today to save API credits
+        news_end_date = date.today().isoformat()
+        news_start_date = (date.today() - timedelta(days=30)).isoformat()
         news.fetch_historical_news(
             keywords=[news_search_ticker, "India", "business", "market"],
-            start_date="2026-02-01", 
-            end_date="2026-03-06",
+            start_date=news_start_date,
+            end_date=news_end_date,
             output_file=news_file,
             max_articles=25
         )

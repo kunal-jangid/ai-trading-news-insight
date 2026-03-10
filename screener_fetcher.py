@@ -1,9 +1,9 @@
 from tradingview_screener import Query, Column
 
 class ScreenerFetcher:
-    def __init__(self, min_market_cap: float = 500_0000000, max_market_cap: float = 50_000000000):
-        # 500 Cr = 5,000,000,000 INR
-        # 5,000 Cr = 50,000,000,000 INR
+    def __init__(self, min_market_cap: float = 5_000_000_000, max_market_cap: float = 500_000_000_000):
+        # 500 Cr  = 5,000,000,000 INR
+        # 50,000 Cr = 500,000,000,000 INR
         self.min_market_cap = min_market_cap
         self.max_market_cap = max_market_cap
 

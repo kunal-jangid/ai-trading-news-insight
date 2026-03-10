@@ -21,7 +21,7 @@ Follow these steps to get the environment running from scratch, assuming no prio
 
 ### 2. Clone the Repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/kunal-jangid/ai-trading-news-insight.git
 cd trading-news-insight
 ```
 

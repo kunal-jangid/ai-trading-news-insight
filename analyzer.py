@@ -1,15 +1,9 @@
-import yfinance as yf
 import ollama
-import pandas as pd
 import json
 
 class TradeAnalyzer:
     def __init__(self, model_name="gemma2"):
         self.model_name = model_name
-
-    def get_stock_context(self, ticker: str) -> dict:
-        # We no longer use yfinance for full contexts, but leaving it as backward compatible if ever needed.
-        pass
 
     def identify_affected_sectors(self, polymarket_data: str) -> list[str]:
         """Prompts Ollama to identify Indian industrial sectors affected by Polymarket events."""
@@ -50,7 +44,8 @@ class TradeAnalyzer:
             if "```json" in content:
                 content = content.split("```json")[-1].split("```")[0].strip()
             elif "```" in content:
-                content = content.split("```")[-1].split("```")[0].strip()
+                parts = content.split("```")
+                content = parts[1].strip() if len(parts) >= 2 else content
                 
             sectors = json.loads(content)
             
@@ -80,7 +75,6 @@ class TradeAnalyzer:
         rsi_14 = indicators.get("RSI", "N/A")
         macd = indicators.get("MACD.macd", "N/A")
         sma_20 = indicators.get("SMA20", "N/A")
-        ema_20 = indicators.get("EMA20", "N/A")
         bb_upper = indicators.get("BBUpper", "N/A")
         bb_lower = indicators.get("BBLower", "N/A")
         

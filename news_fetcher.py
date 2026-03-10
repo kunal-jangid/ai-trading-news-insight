@@ -3,6 +3,8 @@ from eventregistry import EventRegistry, QueryArticlesIter, QueryItems
 
 class NewsFetcher:
     def __init__(self, api_key: str):
+        if not api_key:
+            raise ValueError("EVENT_REGISTRY_API_KEY is not set. Please add it to your .env file.")
         self.er = EventRegistry(apiKey=api_key, allowUseOfArchive=True)
 
     def fetch_historical_news(self, keywords: list, start_date: str, end_date: str, output_file: str = "news_archive.jsonl", max_articles: int = 1000):
